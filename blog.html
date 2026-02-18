@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - Coza Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-bold">COZA</span>
+        <span class="logo-light">STORE</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Shop</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="icons">
+        <div class="icon-box" onclick="toggleSearch()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="icon-box" onclick="toggleCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="count" id="cartCount">0</span>
+        </div>
+        <div class="icon-box" onclick="toggleWishlistSidebar()">
+          <i class="fa-regular fa-heart"></i>
+          <span class="count" id="wishCount">0</span>
+        </div>
+        <div class="icon-box hamburger" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="search-bar" id="searchBar">
+      <div class="container">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="if(event.key==='Enter') searchProducts()">
+        <button onclick="searchProducts()"><i class="fa-solid fa-search"></i></button>
+        <button onclick="closeSearch()"><i class="fa-solid fa-times"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="index.html#products">Shop</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+      <button onclick="toggleCart()"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="empty-cart">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Wishlist Sidebar -->
+  <div class="wishlist-sidebar" id="wishlistSidebar">
+    <div class="wishlist-header">
+      <h3><i class="fa-solid fa-heart"></i> Your Wishlist</h3>
+      <button onclick="toggleWishlistSidebar()"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <div class="wishlist-items" id="wishlistItems">
+      <p class="empty-wishlist">Your wishlist is empty</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+  <!-- Blog Hero -->
+  <section class="blog-hero">
+    <div>
+      <h1>Our Blog</h1>
+      <p>Latest news, trends and fashion tips</p>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog-section">
+    <div class="blog-grid">
+      
+      <!-- Featured Post -->
+      <div class="blog-card featured-post">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800" alt="Featured">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> Jan 15, 2025</span>
+            <span><i class="fa-regular fa-user"></i> Admin</span>
+          </div>
+          <h3>10 Fashion Trends to Watch in 2025</h3>
+          <p>Discover the hottest fashion trends that will dominate the year. From sustainable materials to bold colors, we cover everything you need to know to stay ahead of the curve.</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 1 -->
+      <div class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=600" alt="Blog 1">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> Jan 12, 2025</span>
+            <span><i class="fa-regular fa-comment"></i> 5 Comments</span>
+          </div>
+          <h3>How to Style Your Winter Wardrobe</h3>
+          <p>Learn the best tips and tricks for creating stylish winter outfits that keep you warm and fashionable.</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 2 -->
+      <div class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Blog 2">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> Jan 10, 2025</span>
+            <span><i class="fa-regular fa-comment"></i> 8 Comments</span>
+          </div>
+          <h3>Sustainable Fashion: A Complete Guide</h3>
+          <p>Discover how to build an eco-friendly wardrobe without compromising on style.</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600" alt="Blog 3">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> Jan 8, 2025</span>
+            <span><i class="fa-regular fa-comment"></i> 3 Comments</span>
+          </div>
+          <h3>Accessorize Like a Pro</h3>
+          <p>The ultimate guide to choosing and styling accessories for any occasion.</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 4 -->
+      <div class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Blog 4">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> Jan 5, 2025</span>
+            <span><i class="fa-regular fa-comment"></i> 12 Comments</span>
+          </div>
+          <h3>Minimalist Fashion Essentials</h3>
+          <p>Build a capsule wardrobe with these timeless pieces that never go out of style.</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Blog Post 5 -->
+      <div class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?w=600" alt="Blog 5">
+        </div>
+        <div class="blog-content">
+          <div class="blog-meta">
+            <span><i class="fa-regular fa-calendar"></i> Jan 3, 2025</span>
+            <span><i class="fa-regular fa-comment"></i> 6 Comments</span>
+          </div>
+          <h3>Color Trends for Spring 2025</h3>
+          <p>Get ready for spring with these vibrant color palettes that will refresh your look.</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>CATEGORIES</h4>
+        <ul>
+          <li><a href="index.html#products" onclick="filterCategory('women')">Women</a></li>
+          <li><a href="index.html#products" onclick="filterCategory('men')">Men</a></li>
+          <li><a href="index.html#products" onclick="filterCategory('jewelery')">Jewelry</a></li>
+          <li><a href="index.html#products" onclick="filterCategory('electronics')">Electronics</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>HELP</h4>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>GET IN TOUCH</h4>
+        <p>Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 967166879</p>
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>NEWSLETTER</h4>
+        <input type="email" id="newsletterEmail" placeholder="email@example.com">
+        <button class="subscribe" onclick="subscribeNewsletter()">SUBSCRIBE</button>
+      </div>
+    </div>
+
+    <div class="payments">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex">
+    </div>
+
+    <div class="footer-end">
+      <a href="#top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-check-circle"></i>
+    <span id="toastMessage">Message</span>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

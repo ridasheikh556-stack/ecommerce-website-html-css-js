@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coza Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-bold">COZA</span>
+        <span class="logo-light">STORE</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="index.html#products">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="icons">
+        <div class="icon-box search-toggle" onclick="toggleSearch()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="icon-box cart-icon" onclick="toggleCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="count" id="cartCount">0</span>
+        </div>
+        <div class="icon-box wishlist-icon" onclick="toggleWishlistSidebar()">
+          <i class="fa-regular fa-heart"></i>
+          <span class="count" id="wishCount">0</span>
+        </div>
+        <div class="icon-box hamburger" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Header Search Bar -->
+    <div class="search-bar" id="searchBar">
+      <div class="container">
+        <input type="text" id="searchInput" placeholder="Search products..." onkeyup="if(event.key==='Enter') searchProducts()">
+        <button onclick="searchProducts()"><i class="fa-solid fa-search"></i></button>
+        <button onclick="closeSearch()"><i class="fa-solid fa-times"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="active">Home</a>
+    <a href="index.html#products">Shop</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+      <button onclick="toggleCart()"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="empty-cart">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Wishlist Sidebar -->
+  <div class="wishlist-sidebar" id="wishlistSidebar">
+    <div class="wishlist-header">
+      <h3><i class="fa-solid fa-heart"></i> Your Wishlist</h3>
+      <button onclick="toggleWishlistSidebar()"><i class="fa-solid fa-times"></i></button>
+    </div>
+    <div class="wishlist-items" id="wishlistItems">
+      <p class="empty-wishlist">Your wishlist is empty</p>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+  <!-- HERO SLIDER -->
+  <section class="hero-slider">
+    <div class="slider-wrapper">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200')">
+        <div class="slide-content">
+          <h2 class="line1">Women Collection 2025</h2>
+          <h3 class="line2">New Season</h3>
+          <a href="#products" class="btn-shop">Shop Now</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=1200')">
+        <div class="slide-content">
+          <h2 class="line1">Men Collection 2025</h2>
+          <h3 class="line2">Trending Now</h3>
+          <a href="#products" class="btn-shop">Shop Now</a>
+        </div>
+      </div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200')">
+        <div class="slide-content">
+          <h2 class="line1">New Accessories</h2>
+          <h3 class="line2">Hot Picks</h3>
+          <a href="#products" class="btn-shop">Shop Now</a>
+        </div>
+      </div>
+      <div class="slider-arrow left-arrow" onclick="prevSlide()">&#10094;</div>
+      <div class="slider-arrow right-arrow" onclick="nextSlide()">&#10095;</div>
+      <div class="slider-dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY CARDS -->
+  <section class="cate-wrap">
+    <div class="cate-item">
+      <div class="cate-box" onclick="filterByCategory('women')">
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400" alt="Women">
+        <div class="cate-text">
+          <h3>Women</h3>
+          <span>Spring 2025</span>
+          <span class="shop-btn">Shop Now</span>
+          <span class="shop-line"></span>
+        </div>
+      </div>
+      <div class="cate-line"></div>
+    </div>
+
+    <div class="cate-item">
+      <div class="cate-box" onclick="filterByCategory('men')">
+        <img src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=400" alt="Men">
+        <div class="cate-text">
+          <h3>Men</h3>
+          <span>Spring 2025</span>
+          <span class="shop-btn">Shop Now</span>
+          <span class="shop-line"></span>
+        </div>
+      </div>
+      <div class="cate-line"></div>
+    </div>
+
+    <div class="cate-item">
+      <div class="cate-box" onclick="filterByCategory('accessories')">
+        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400" alt="Accessories">
+        <div class="cate-text">
+          <h3>Accessories</h3>
+          <span>New Trend</span>
+          <span class="shop-btn">Shop Now</span>
+          <span class="shop-line"></span>
+        </div>
+      </div>
+      <div class="cate-line"></div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section id="products" class="products-section">
+    <div class="top-bar">
+      <div class="left">
+        <h2 class="heading">PRODUCT OVERVIEW</h2>
+        <div class="category-menu">
+          <span class="active" onclick="filterCategory('all', this)">All Products</span>
+          <span onclick="filterCategory('women', this)">Women</span>
+          <span onclick="filterCategory('men', this)">Men</span>
+          <span onclick="filterCategory('jewelery', this)">Jewelry</span>
+          <span onclick="filterCategory('electronics', this)">Electronics</span>
+        </div>
+      </div>
+      <div class="actions">
+        <button onclick="toggleProductSearch()"><i class="fa fa-search"></i> Search</button>
+        <button onclick="showFilterPopup()"><i class="fa fa-filter"></i> Filter</button>
+      </div>
+    </div>
+
+    <!-- Product Search Bar (Separate from header) -->
+    <div class="product-search-bar" id="productSearch">
+      <div class="product-search-container">
+        <input type="text" id="productSearchInput" placeholder="Search products by name, category..." onkeyup="if(event.key==='Enter') searchProductsOverview()">
+        <button onclick="searchProductsOverview()"><i class="fa-solid fa-search"></i></button>
+        <button onclick="closeProductSearch()"><i class="fa-solid fa-times"></i></button>
+      </div>
+    </div>
+
+    <div class="products" id="productsGrid">
+      <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading products...</div>
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="load-more" onclick="loadMore()">Load More</button>
+    </div>
+  </section>
+
+  <!-- Filter Popup -->
+  <div class="filter-popup" id="filterPopup">
+    <div class="filter-content">
+      <div class="filter-header">
+        <h3><i class="fa-solid fa-filter"></i> Filter Products</h3>
+        <button onclick="closeFilterPopup()"><i class="fa-solid fa-times"></i></button>
+      </div>
+      
+      <div class="filter-body">
+        <!-- Categories -->
+        <div class="filter-section">
+          <h4>Categories</h4>
+          <div class="filter-categories">
+            <label class="filter-category">
+              <input type="checkbox" onchange="toggleFilterCategory('men', this)">
+              <span>Men's Clothing</span>
+            </label>
+            <label class="filter-category">
+              <input type="checkbox" onchange="toggleFilterCategory('women', this)">
+              <span>Women's Clothing</span>
+            </label>
+            <label class="filter-category">
+              <input type="checkbox" onchange="toggleFilterCategory('jewelery', this)">
+              <span>Jewelry</span>
+            </label>
+            <label class="filter-category">
+              <input type="checkbox" onchange="toggleFilterCategory('electronics', this)">
+              <span>Electronics</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="filter-section">
+          <h4>Price Range</h4>
+          <div class="price-range">
+            <input type="range" id="priceRange" min="0" max="1000" value="1000" oninput="setPriceRange(0, this.value)">
+            <div class="price-value" id="priceValue">$0 - $1000</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-footer">
+        <button class="reset-btn" onclick="resetFilters()">Reset All</button>
+        <button class="apply-btn" onclick="applyFilterSettings()">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>CATEGORIES</h4>
+        <ul>
+          <li><a href="#" onclick="filterCategory('women')">Women</a></li>
+          <li><a href="#" onclick="filterCategory('men')">Men</a></li>
+          <li><a href="#" onclick="filterCategory('jewelery')">Jewelry</a></li>
+          <li><a href="#" onclick="filterCategory('electronics')">Electronics</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>HELP</h4>
+        <ul>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>GET IN TOUCH</h4>
+        <p>Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 967166879</p>
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>NEWSLETTER</h4>
+        <input type="email" id="newsletterEmail" placeholder="email@example.com">
+        <button class="subscribe" onclick="subscribeNewsletter()">SUBSCRIBE</button>
+      </div>
+    </div>
+
+    <div class="payments">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="Amex">
+    </div>
+
+    <div class="footer-end">
+      <a href="#top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="product-modal" id="productModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-times"></i></button>
+      <div class="modal-body" id="modalBody">
+        <!-- Product details will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-check-circle"></i>
+    <span id="toastMessage">Added to cart!</span>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
